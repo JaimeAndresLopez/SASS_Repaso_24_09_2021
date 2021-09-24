@@ -1,0 +1,25 @@
+//Crear Variables
+$selector:'h1';
+$propiedad: background;
+$valor: #ff0000;
+
+#{$selector}{
+    #{$propiedad}: $valor;
+}
+
+//Variables tipo lista
+
+$lista: "p" background #c0c0c0 cur sive color;
+$colorIni: red pink;
+$colorSeg: blue yellow;
+$otraLista:bold;
+//Usamos append para agregar mas items a la lista al final
+$colorIni:append($colorIni,white);
+#{nth($lista, 1)}{
+    #{nth($lista,2)}:nth($lista,3);
+    $listaNueva: join($colorIni, $colorSeg);//el Join se usa para unir listas
+    $listaNueva: set-nth($listaNueva,3,"Jaime");//Usamos set-nth para asignar en necimo valor de la lista
+    #{nth($lista,6)}:nth($listaNueva,5);
+    font-family: nth($lista, 4)+nth($lista, 5), nth($listaNueva,3);
+    font-weight: nth($otraLista, index($otraLista, bold));//Con INDEX podemos buscar el indice en la lista
+}
