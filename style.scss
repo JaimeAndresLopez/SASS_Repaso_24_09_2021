@@ -1,3 +1,6 @@
+@use "sass:map";
+@import '_functions';
+@import '_variables';
 //Crear Variables
 $selector:'h1';
 $propiedad: background;
@@ -22,4 +25,39 @@ $colorIni:append($colorIni,white);
     #{nth($lista,6)}:nth($listaNueva,5);
     font-family: nth($lista, 4)+nth($lista, 5), nth($listaNueva,3);
     font-weight: nth($otraLista, index($otraLista, bold));//Con INDEX podemos buscar el indice en la lista
+}
+
+//Variables de tipo map
+$colores:(fondo:rgb(79, 251, 63), contenido:blue);
+$caja:(ancho:100%, alto:500px, display:flex, alineacion:center);
+.maps h2{
+    background: map-get($colores, "fondo" );
+    color:map-get($colores, "contenido");
+}
+
+.maps{
+    flex-direction: column-reverse;
+    width: map-get($caja, "ancho");
+    height: map-get($map: $caja, $key: "alto");
+    text-align: map-get($caja, "alineacion");
+    display: map-get($map: $caja, $key: "display");
+}
+$colorInformacion:(
+    danger:(
+        background:$red,
+        color:map-get($grays, "100"),
+        font-family: Arial,
+        font-style: italic
+    ),
+    success:(
+        background:$teal,
+        color:map-get($grays, "100"),
+        font-family: cursive,
+        font-weight: bold
+    )
+);
+.maps p{
+    @each $id,$value in map-get($colorInformacion, 'success') {
+        #{$id}: $value;
+    }
 }
